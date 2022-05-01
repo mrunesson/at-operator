@@ -6,4 +6,14 @@ plugins:
   scorecard.sdk.operatorframework.io/v2: {}
 projectName: at-operator
 repo: github.com/mrunesson/at-operator
+resources:
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: linuxalert.org
+  group: batch
+  kind: At
+  path: github.com/mrunesson/at-operator/api/v1alpha1
+  version: v1alpha1
 version: "3"
