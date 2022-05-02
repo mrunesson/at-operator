@@ -69,7 +69,7 @@ func (r *AtReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Re
 	// Check if it is time to run?
 	currentTime := time.Now()
 	expectedStart := time.Date(at.Spec.Year, time.Month(at.Spec.Month), at.Spec.Day, at.Spec.Hour, at.Spec.Minute, 0, 0, currentTime.Location())
-	if expectedStart.After(currentTime) && !at.Status.Scheduled {
+	if currentTime.After(expectedStart) && !at.Status.Scheduled {
 		at.Status.Scheduled = true
 		job := r.deploymentForAt(at)
 		logger.Info("Creating a new Job", "Job.Namespace", job.Namespace, "Job.Name", job.Name)
