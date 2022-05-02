@@ -1,0 +1,23 @@
+apiVersion: batch.linuxalert.org/v1alpha1
+kind: At
+metadata:
+  name: first-at
+spec:
+  year: 2022
+  month: 5
+  day: 2
+  hour: 16
+  minute: 20
+  jobTemplate:
+    template:
+      metadata:
+        name: worker-pod
+      spec:
+        containers:
+          - name: worker-pod
+            image: busybox
+            args:
+              - /bin/sh
+              - -c
+              - "for task in 1 2 3 4 5; do echo Task -${task} completed!; done;echo 'Done !'"
+        restartPolicy: OnFailure

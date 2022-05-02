@@ -17,6 +17,7 @@ limitations under the License.
 package v1alpha1
 
 import (
+	v1 "k8s.io/api/batch/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
@@ -27,15 +28,20 @@ import (
 type AtSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
-
-	// Foo is an example field of At. Edit at_types.go to remove/update
-	Foo string `json:"foo,omitempty"`
+	Year        int        `json:"year"`
+	Month       int        `json:"month"`
+	Day         int        `json:"day"`
+	Hour        int        `json:"hour"`
+	Minute      int        `json:"minute"`
+	JobTemplate v1.JobSpec `json:"jobTemplate,omitempty"`
 }
 
 // AtStatus defines the observed state of At
 type AtStatus struct {
 	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
-	// Important: Run "make" to regenerate code after modifying this file
+	// Important: Run "make" to regenerate code after modifying this file¨
+	Job       string `json:"job,omitempty"`
+	Scheduled bool   `json:"scheduled,omitempty"`
 }
 
 //+kubebuilder:object:root=true
